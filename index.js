@@ -32,7 +32,8 @@ module.exports = class {
      * @param {object} queries Object w/ keys & string values of each url query parameter (example: {sku:'10205'})
      */
     async get(endpoint, queries={}){
-        const url = `${this.base}${endpoint}?${querystring.stringify(queries)}`
+        const queryString = `${querystring.stringify(queries)}` ? `?${querystring.stringify(queries)}` : "";
+        const url = `${this.base}${endpoint}` + queryString;
         return this.readResponse(url)
     }
 
